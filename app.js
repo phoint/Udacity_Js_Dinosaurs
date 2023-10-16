@@ -26,7 +26,7 @@ async function createDinoObjects(human) {
     const response = await fetch('dino.json');
     const data = await response.json();
     return data.Dinos.map(e => {
-        let dino = new Dino(e.species, e.weight, e.height, e.diet, e.where, e.when, e.fact);
+        const dino = new Dino(e.species, e.weight, e.height, e.diet, e.where, e.when, e.fact);
         if (e.species !== 'Pigeon') {
             dino.randomFact(human);
         }
@@ -49,7 +49,7 @@ Dino.prototype.weightCompare = function (human) {
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dino.prototype.heightCompare = function (human) {
-    let humanHeight = human.feet * 12 + human.inches;
+    const humanHeight = human.feet * 12 + human.inches;
     if (humanHeight < this.height) {
         const times = Math.fround(this.height / humanHeight).toFixed(2);
         return `${this.species} is ${times} times taller than you`;
